@@ -18,8 +18,13 @@ import translations from "@theme/SearchTranslations";
 import { useWindowSize } from "@docusaurus/theme-common";
 import CustomSearchButton from "./CustomSearchButton";
 import styles from './styles.module.css';
+import AskCookbook from '@cookbookdev/docsbot/react'
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 let DocSearchModal = null;
+
+const COOKBOOK_PUBLIC_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NmJlNGJiYTZkMjk4YjBkZjY5OWJiMmQiLCJpYXQiOjE3MjM3NDcyNTgsImV4cCI6MjAzOTMyMzI1OH0.IvTIk5lxyOQEus1NKJ0QW-JUiv2kVeZCUKElIZtepPY";
+
 function Hit({ hit, children }) {
   return <Link to={hit.url}>{children}</Link>;
 }
@@ -187,6 +192,7 @@ function DocSearch({ contextualSearch, externalUrlRegex, ...props }) {
           />,
           searchContainer.current
         )}
+        <BrowserOnly>{() => <AskCookbook apiKey={COOKBOOK_PUBLIC_API_KEY} /> }</BrowserOnly>
     </>
   );
 }
